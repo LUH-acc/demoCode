@@ -1,0 +1,254 @@
+html,
+body,
+header,
+footer,
+section,
+nav,
+div,
+ul,
+li,
+ol,
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  //overflow-y: hidden;
+  background: #f9f9f9;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+div, ul {
+  // 隐藏滚动条
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+img {
+  vertical-align: middle;
+}
+
+.beyond_hidden {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-link {
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+}
+.page-background {
+  width: 100%;
+  height: 127px;
+  background: #DD2525;
+}
+/* 页面公用样式 */
+.page-full {
+  width: 100%;
+  height: 100%;
+  background: #eee;
+
+  &.flex-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flex-scroll {
+    flex: 1;
+    overflow-y: auto;
+    // 隐藏滚动条
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+  }
+}
+
+
+.flex-end {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.page-container {
+  padding: 14px 16px;
+}
+
+.flex-start {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.flex-end {
+  display: flex;
+  align-items: flex-end;
+}
+
+.flex-between {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.splice-style {
+  .label-style {
+    &:not(:last-child) {
+      margin-right: 4px;
+    }
+  }
+}
+
+.van-button--mini {
+  padding: 5px 18px;
+}
+
+/* form表单输入框字数统计开启时，要求字数和输入框保持一行，单元格加上此类名 */
+.limit-style {
+  .van-cell__value {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+
+    .van-field__body {
+      flex: 1;
+      margin-right: 4px;
+    }
+
+    .van-field__error-message {
+      flex-basis: 100%;
+    }
+
+    .van-field__word-limit {
+      color: #B9BABD;
+      padding-bottom: 2px;
+    }
+  }
+}
+
+.module-title {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 12px;
+  color: #B9BABD;
+  background-color: #F9F9F9;
+}
+
+.mt8 {
+  margin-top: 8px;
+}
+
+.avatar-container {
+  display: flex;
+  align-items: center;
+}
+
+.white-bg {
+  background-color: #ffffff;
+}
+.bold {
+  font-weight: bold !important;
+}
+.spec-value-error {
+  color: #ee0a24;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+.overflow-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.van-toast.z10000 {
+  z-index: 100000!important;
+}
+
+.van-pull-refresh {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.max-size {
+  width: 100%;
+  input {
+    width: 100%;
+  }
+}
+.number-cell {
+  .van-cell__title {
+    flex: none;
+    box-sizing: border-box;
+    width: 6.2em;
+    margin-right: 3.2vw;
+    color: #646566;
+    text-align: left;
+    font-size: 16px;
+    height: 28px;
+    line-height: 28px;
+    word-wrap: break-word;
+  }
+  .van-cell__value {
+    font-size: 16px;
+    input {
+      background: #ffffff !important;
+    }
+    .van-stepper__minus {
+      background-color: #fff;
+    }
+    .van-stepper__plus {
+      background-color: #fff;
+    }
+  }
+}
+.full-popup {
+  height: calc(100% + 1px) !important;
+  margin-top: -1px;
+}
+
+.message-badge {
+  .van-badge {
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    line-height: 11px;
+    padding: 0 4px;
+  }
+}
+.required {
+  color: #ee0a24;
+}
+
+// 取消默认出现的 a 标签为#1890ff颜色的问题  目前不知道是在哪里设置的,但是有些地方会有问题
+a{
+color: #333333;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
