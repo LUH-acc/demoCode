@@ -8,8 +8,8 @@ const deploy = async () => {
     await sftp.connect({
       port: '22',
       host: '123.249.23.211', // sftp地址
-      username: 'root',
-      password: 'lb123123..',
+      username: '',
+      password: '',
     })
     await sftp.uploadDir(join('./dist/'), '/tool/html/luh')
     // ./web/  要上传的本地的目录,vue build之后会生成的目录就是 web
