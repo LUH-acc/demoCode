@@ -28,6 +28,10 @@
       name: 'changeImg',
       path: '/changeImg',
     },
+    {
+      name: 'boxShadowCanvas',
+      path: '/boxShadowCanvas',
+    },
   ])
 
   onMounted(() => {
