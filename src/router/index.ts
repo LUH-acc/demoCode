@@ -72,6 +72,14 @@ export const routes: Array<RouteRecordRaw> = [
     name: 'changeImg',
     component: () => import('@/views/imagePage/index.vue'),
   },
+  {
+    path: '/boxShadowCanvas',
+    name: 'boxShadowCanvas',
+    component: () => import('@/views/boxShadowCanvas/index.vue'),
+    meta: {
+      title: 'Box Shadow Canvas',
+    },
+  },
 
   // 替代vue2中的'*'通配符路径
   { path: '/:pathMatch(.*)*', redirect: '/' },

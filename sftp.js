@@ -8,7 +8,7 @@ const deploy = async () => {
     await sftp.connect({
       port: '22',
       host: '123.249.23.211', // sftp地址
-      username: '',
+      username: 'root',
       password: '',
     })
     await sftp.uploadDir(join('./dist/'), '/tool/html/luh')
