@@ -6,15 +6,13 @@
     <div>
       <input type="file" name="file" @change="handleFileChange" />
     </div>
-    <div id="img-box">
-      <span>canvas</span>
-    </div>
     <div class="boxShadow" ref="boxShadow"> </div>
     <div><span>box-shadow</span></div>
   </div>
 </template>
 
 <script setup lang="ts">
+  import { ref } from 'vue'
   const imgUrl = ref()
   const boxShadow = ref()
   // 默认上传图片容器高度
@@ -25,9 +23,11 @@
   // 文件对象 -> 读取文件内容 -> 显示图片 -> 绘制到canvas -> 获取像素点 -> 绘制阴影
   const handleFileChange = (e: any) => {
     const file = e.target.files[0]
+    // 读取文件内容
     const reader = new FileReader()
     reader.readAsDataURL(file)
     reader.onload = () => {
+      // 显示图片
       imgUrl.value = reader.result as string
       const img = new Image()
       img.src = imgUrl.value
@@ -39,15 +39,16 @@
       }
     }
   }
+  // 绘制canvas
   const createCanvas = (img: any) => {
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')
+    // 图片容器的宽度
     canvas.width = imgboxWidth.value
+    // 等比例图片高度
     canvas.height = imgHeight.value
     // 绘制图片到canvas
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
-    // 将图片绘画到boxShadow
-    document.querySelector('#img-box')?.appendChild(canvas)
     // 获取像素点
     const canvasData = ctx.getImageData(0, 0, canvas.width, canvas.height)
     let boxShadowStr = ''
