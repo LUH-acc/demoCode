@@ -20,15 +20,18 @@
     resize?.addEventListener('mousedown', mousedown)
   })
   const mousedown = (e) => {
-    mouseup()
+    // 阻止浏览器默认行为
+    e.preventDefault()
     Y.value = e.clientY
-    document?.addEventListener('mousemove', mousemove, false)
-    document.addEventListener('mouseup', mouseup, false)
+    document.addEventListener('mouseup', mouseup)
+    document?.addEventListener('mousemove', mousemove)
+    resizeHeight.value = bottom.offsetHeight
   }
   const mouseup = () => {
-    resizeHeight.value = bottom.offsetHeight
-    document?.removeEventListener('mousemove', mousemove, false)
-    document.removeEventListener('mouseup', mouseup, false)
+    console.log(1)
+
+    document.removeEventListener('mouseup', mouseup)
+    document?.removeEventListener('mousemove', mousemove)
   }
   const mousemove = (e) => {
     const height = Y.value - e.clientY
