@@ -80,6 +80,16 @@ export const routes: Array<RouteRecordRaw> = [
       title: 'Box Shadow Canvas',
     },
   },
+  {
+    path: '/waterFull',
+    name: 'waterFull',
+    component: () => import('@/views/waterFull/index.vue'),
+  },
+  {
+    path: '/testPage',
+    name: 'testPage',
+    component: () => import('@/views/testPage/index.vue'),
+  },
 
   // 替代vue2中的'*'通配符路径
   { path: '/:pathMatch(.*)*', redirect: '/' },
