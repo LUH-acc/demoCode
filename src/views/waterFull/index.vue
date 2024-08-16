@@ -4,7 +4,13 @@
       class="water-full-item"
       v-for="item in list"
       :key="item.id"
-      :style="{ width: `${item.with}px`, height: `${item.height}px`, backgroundColor: item.bg }"
+      :style="{
+        width: `${item.with}px`,
+        height: `${item.height}px`,
+        backgroundColor: item.bg,
+        top: item.top,
+        left: item.left,
+      }"
     >
       {{ item.content }}
     </div>
@@ -30,13 +36,41 @@
   }
 
   onMounted(() => {
+    console.log(heightList.value)
+    window.addEventListener('resize', resize)
+    init()
+    createDiv()
+  })
+
+  const init = () => {
     pageX.value = document.documentElement.clientWidth || document.body.clientWidth
     num.value = Math.floor(pageX.value / width)
     console.log(num.value)
     heightList.value = Array.from({ length: num.value }, () => 0)
+  }
 
-    createDiv()
-  })
+  const resize = debounce(() => {
+    init()
+    for (let i = 0; i < list.length; i++) {
+      let index = isMin()
+      let top = heightList.value[index] + 'px'
+      list[i].top = top
+      list[i].left = index * width + 'px'
+      heightList.value[index] += list[i].height
+    }
+  }, 100)
+
+  const isMin = () => {
+    let index = 0
+    let min = heightList.value[0]
+    for (let i = 0; i < heightList.value.length; i++) {
+      if (heightList.value[i] < min) {
+        min = heightList.value[i]
+        index = i
+      }
+    }
+    return index
+  }
 
   function generateHexValue() {
     // 生成一个6位的16进制数值
@@ -48,13 +82,18 @@
   }
   const createDiv = () => {
     for (let i = 0; i < 15; i++) {
+      let index = isMin()
+      let top = heightList.value[index] + 'px'
       let obj = {
         id: i,
         content: `内容${i}`,
         with: width,
+        top,
+        left: index * width + 'px',
         height: Math.floor(Math.random() * 100) + 250,
         bg: generateHexValue(),
       }
+      heightList.value[index] += obj.height
       list.push(obj)
     }
   }
@@ -65,6 +104,7 @@
     position: relative;
   }
   .water-full-item {
+    padding: 10px;
     position: absolute;
   }
 </style>
