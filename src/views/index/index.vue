@@ -32,6 +32,14 @@
       name: 'boxShadowCanvas',
       path: '/boxShadowCanvas',
     },
+    {
+      name: 'waterFull',
+      path: '/waterFull',
+    },
+    {
+      name: 'testPage',
+      path: '/testPage',
+    },
   ])
 
   onMounted(() => {
