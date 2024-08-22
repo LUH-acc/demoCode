@@ -24,7 +24,8 @@
   const waterFull = ref(null)
   const list = reactive<Record<string, any>[]>([])
   const pageX = ref(0)
-  const width = 230
+  const width = ref(0)
+  const widthNative = 230
   const waterHeight = ref(0)
   const num = ref(0)
   const heightList = ref<number[]>([])
@@ -54,7 +55,6 @@
         if (entry.isIntersecting) {
           // box.style.display = 'none'
           // observe.disconnect()
-          console.log(123)
           setTimeout(() => {
             createDiv()
           }, 2000)
@@ -72,7 +72,9 @@
 
   const init = () => {
     pageX.value = document.documentElement.clientWidth || document.body.clientWidth
-    num.value = Math.floor(pageX.value / width)
+    num.value = Math.floor(pageX.value / widthNative)
+    width.value = Math.floor(pageX.value / num.value)
+
     // console.log(num.value)
     heightList.value = Array.from({ length: num.value }, () => 0)
   }
@@ -83,11 +85,11 @@
       let index = isMin()
       let top = heightList.value[index] + 'px'
       list[i].top = top
-      list[i].left = index * width + 'px'
+      list[i].left = index * width.value + 'px'
       heightList.value[index] += list[i].height
     }
     isMax()
-  }, 100)
+  }, 30)
 
   const isMin = () => {
     let index = 0
@@ -132,7 +134,7 @@
         content: `内容${i}`,
         with: width,
         top,
-        left: index * width + 'px',
+        left: index * width.value + 'px',
         height: Math.floor(Math.random() * 100) + 250,
         bg: generateHexValue(),
       }
@@ -146,10 +148,12 @@
 <style>
   .water-full {
     position: relative;
+    overflow-y: auto;
   }
   .water-full-item {
     padding: 10px;
     position: absolute;
+    box-sizing: border-box;
   }
   .water-full-loading {
     height: 50px;
