@@ -86,6 +86,11 @@ export const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/waterFull/index.vue'),
   },
   {
+    path: '/articleFold',
+    name: 'articleFold',
+    component: () => import('@/views/articleFold/index.vue'),
+  },
+  {
     path: '/testPage',
     name: 'testPage',
     component: () => import('@/views/testPage/index.vue'),

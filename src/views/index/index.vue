@@ -37,6 +37,10 @@
       path: '/waterFull',
     },
     {
+      name: 'articleFold',
+      path: '/articleFold',
+    },
+    {
       name: 'testPage',
       path: '/testPage',
     },
