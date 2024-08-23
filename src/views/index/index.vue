@@ -41,6 +41,10 @@
       path: '/articleFold',
     },
     {
+      name: '侧边导航',
+      path: '/sideNav',
+    },
+    {
       name: 'testPage',
       path: '/testPage',
     },

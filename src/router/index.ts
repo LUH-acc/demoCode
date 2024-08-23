@@ -91,6 +91,11 @@ export const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/articleFold/index.vue'),
   },
   {
+    path: '/sideNav',
+    name: 'sideNav',
+    component: () => import('@/views/sideNav/index.vue'),
+  },
+  {
     path: '/testPage',
     name: 'testPage',
     component: () => import('@/views/testPage/index.vue'),

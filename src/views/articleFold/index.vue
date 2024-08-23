@@ -19,8 +19,6 @@
     articleFlod = document.querySelector('.article-flod')
     const height = content.scrollHeight
     ratio.value = Math.floor((articleFlod.clientHeight / height) * 100)
-    console.log(articleFlod.clientHeight, ratio.value)
-    console.log(height)
   })
   const showAll = () => {
     show.value = false
