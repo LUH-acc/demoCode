@@ -2,55 +2,33 @@
   <div>
     <div class="index-page">
       <div>index page </div>
-      <div class="link" @click="handleClick()"> go lockyDraw </div>
-      <div class="link" @click="goTODO">go todoList</div>
-      <div class="link" @click="goPath('/chat')">go chat</div>
-      <div class="link" @click="goPath('/canvasImg')">go canvasImg</div>
-      <div class="link" @click="goPath('/dragPage')">go dragPage</div>
-      <div class="link" @click="goPath('/resizePage')">go resizePage</div>
-      <div class="link" @click="goPath('/toHtml')">go toHtml</div>
       <div class="link" v-for="item in routerList" :key="item.name" @click="goPath(item.path)">
-        go to{{ item.name }}
+        go to {{ item.name }}
       </div>
     </div>
-    <div class="test"> asdfjaskdfjasdkfjasdkfjasldkfjalskdjflasdjfkasjdlfajsdl </div>
+    <div class="test"> </div>
   </div>
 </template>
 <script setup lang="ts">
+  import { routes } from '@/router'
+
   const router = useRouter()
 
-  const routerList = reactive([
-    {
-      name: 'canvas',
-      path: '/canvas',
-    },
-    {
-      name: 'changeImg',
-      path: '/changeImg',
-    },
-    {
-      name: 'boxShadowCanvas',
-      path: '/boxShadowCanvas',
-    },
-    {
-      name: 'waterFull',
-      path: '/waterFull',
-    },
-    {
-      name: 'articleFold',
-      path: '/articleFold',
-    },
-    {
-      name: '侧边导航',
-      path: '/sideNav',
-    },
-    {
-      name: 'testPage',
-      path: '/testPage',
-    },
-  ])
+  const routerList = ref<{ name: string; path: string }[]>([])
+
+  const filterRoute = () => {
+    routerList.value = routes
+      .filter((item) => item.name !== 'Layout' || !item.name)
+      .map((item) => {
+        return {
+          name: item.name,
+          path: item.path,
+        }
+      })
+  }
 
   onMounted(() => {
+    filterRoute()
     let testDom = document.querySelector('.test')
     const originStyle = window.getComputedStyle(testDom)
     // const container = document.createElement('div')
@@ -64,15 +42,6 @@
       // container.style.setProperty(name, originStyle.getPropertyValue(name))
     })
   })
-
-  const handleClick = () => {
-    console.log('执行')
-
-    router.push('/luckyDraw')
-  }
-  const goTODO = () => {
-    router.push('/todoList')
-  }
   const goPath = (path: string) => {
     router.push(path)
   }
@@ -83,7 +52,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 1000px;
     // background-color: lightpink;
   }
   .link {

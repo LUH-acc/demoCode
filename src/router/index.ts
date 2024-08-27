@@ -96,6 +96,11 @@ export const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/sideNav/index.vue'),
   },
   {
+    path: '/life100',
+    name: 'life 100',
+    component: () => import('@/views/life100/index.vue'),
+  },
+  {
     path: '/testPage',
     name: 'testPage',
     component: () => import('@/views/testPage/index.vue'),
