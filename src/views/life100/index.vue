@@ -1,11 +1,17 @@
 <template>
   <div class="life">
     <div class="life-container">
-      <div class="life-header"> header </div>
+      <div class="life-header"> 人生的100件事 </div>
       <div class="life-body">
-        <div class="left">left</div>
+        <div class="left">
+          <div>已完成</div>
+          <ul>
+            <li>1. 滑雪</li>
+            <li>2. 游泳</li>
+          </ul>
+        </div>
         <div class="content">
-          <div class="list">content</div>
+          <div class="list"> </div>
         </div>
         <div class="right">right</div>
       </div>
@@ -26,8 +32,6 @@
   })
 
   const handleScroll = _.debounce(() => {
-    console.log(lifeDom.scrollTop)
-
     if (lifeDom.scrollTop > 500) {
       leftHeaderDom.style.transform = 'translateY(-100%)'
       contentLefeDom.style.top = '20px'
@@ -54,7 +58,7 @@
     right: 0;
     bottom: 0;
     width: 100%;
-    background-color: lightcoral;
+    background-color: #fff;
     transition: transform 0.2s;
     transform: translateZ(0);
   }

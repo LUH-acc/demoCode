@@ -101,6 +101,11 @@ export const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/life100/index.vue'),
   },
   {
+    path: '/fileDrag',
+    name: 'fileDrag',
+    component: () => import('@/views/fileDrag/index.vue'),
+  },
+  {
     path: '/testPage',
     name: 'testPage',
     component: () => import('@/views/testPage/index.vue'),
