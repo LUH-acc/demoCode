@@ -3,6 +3,8 @@ import { createHtmlPlugin } from 'vite-plugin-html'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { VantResolver } from 'unplugin-vue-components/resolvers'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vitejs.dev/config/
@@ -25,6 +27,9 @@ export default ({ command, mode }) => {
       vue(),
       VueJsx(),
       createHtmlPlugin(),
+      Components({
+        resolvers: [VantResolver()],
+      }),
       // 自动导入api
       AutoImport({
         imports: ['vue', 'vue-router'],

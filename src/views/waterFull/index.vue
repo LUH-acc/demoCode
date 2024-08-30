@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="water-full" :style="{ height: `${waterHeight}px` }">
+    <div class="water-fall" :style="{ height: `${waterHeight}px` }">
       <div
-        class="water-full-item"
+        class="water-fall-item"
         v-for="(item, index) in list"
         :key="index"
         :style="{
@@ -16,12 +16,12 @@
         {{ item.content }}
       </div>
     </div>
-    <div class="water-full-loading"> loading... </div>
+    <div class="water-fall-loading"> loading... </div>
   </div>
 </template>
 <!-- 瀑布流组件 -->
 <script setup lang="ts">
-  const waterFull = ref(null)
+  const waterFall = ref(null)
   const list = reactive<Record<string, any>[]>([])
   const pageX = ref(0)
   const width = ref(0)
@@ -45,10 +45,10 @@
     window.addEventListener('resize', resize)
     init()
     createDiv()
-    a()
+    observeLoading()
   })
 
-  const a = () => {
+  const observeLoading = () => {
     let box = document.querySelector('.water-full-loading')
     const observe = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -71,8 +71,11 @@
   }
 
   const init = () => {
+    // 获取页面宽度
     pageX.value = document.documentElement.clientWidth || document.body.clientWidth
+    // 获取页面最大个数
     num.value = Math.floor(pageX.value / widthNative)
+    // 每个容器的宽度
     width.value = Math.floor(pageX.value / num.value)
 
     // console.log(num.value)
@@ -146,16 +149,16 @@
 </script>
 
 <style>
-  .water-full {
+  .water-fall {
     position: relative;
     overflow-y: auto;
   }
-  .water-full-item {
+  .water-fall-item {
     padding: 10px;
     position: absolute;
     box-sizing: border-box;
   }
-  .water-full-loading {
+  .water-fall-loading {
     height: 50px;
     background-color: lightblue;
   }
