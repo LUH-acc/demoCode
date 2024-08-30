@@ -1,7 +1,13 @@
 <template>
   <div>
-    <div class="drag-area" ref="dragArea">
-      <input class="file-input" type="file" @change="handleFile" />
+    <div
+      class="drag-area"
+      ref="dragArea"
+      @dragleave="handleDragLeave"
+      @drop="handleDrop"
+      @dragenter="handleDragEnter"
+    >
+      <input class="file-input" type="file" />
       <img class="preview" v-if="fileUrl" :src="fileUrl" alt="" />
     </div>
   </div>
@@ -11,41 +17,23 @@
   const dragArea = ref(null)
   const fileUrl = ref('')
 
-  onMounted(() => {
-    init()
-  })
-
-  const init = () => {
-    dragArea.value.addEventListener('dragover', handleDragOver)
-    dragArea.value.addEventListener('dragenter', handleDragEnter)
-    dragArea.value.addEventListener('drop', handleDrop)
+  const handleDragLeave = (event: any) => {
+    console.log('handleDragLeave', event)
+    dragArea.value.classList.remove('drag-area-active')
   }
-
   const handleDragEnter = (event: any) => {
     console.log('handleDragEnter', event)
-  }
-  const handleDragOver = (event: any) => {
-    event.preventDefault()
     dragArea.value.classList.add('drag-area-active')
   }
   const handleDrop = (event: any) => {
-    console.log('handleDrop', event)
-    event.preventDefault()
     dragArea.value.classList.remove('drag-area-active')
     const files = event.dataTransfer.files
-    console.log(files)
     const file = files[0]
-    console.log(file.type)
-
-    // const reader = new FileReader()
-    // reader.readAsDataURL(file)
-    // reader.onload = (e) => {
-    //   fileUrl.value = e.target.result
-    // }
-  }
-
-  const handleFile = (event: any) => {
-    console.log(event)
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = (e) => {
+      fileUrl.value = e.target.result
+    }
   }
 </script>
 
