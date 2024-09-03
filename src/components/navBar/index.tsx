@@ -1,9 +1,14 @@
 import { defineComponent } from 'vue'
+import { Icon } from 'vant'
 import { useRouter, useRoute } from 'vue-router'
 import './index.less'
 const NavBarProps = {
   title: String,
   back: Function,
+  showBack: {
+    type: Boolean,
+    default: true,
+  },
 }
 
 export default defineComponent({
@@ -20,10 +25,12 @@ export default defineComponent({
       }
     }
     const renderIcon = () => {
-      return (
-        <div class="icon" onClick={handBack}>
-          返回
+      return props.showBack ? (
+        <div class="back-icon" onClick={handBack}>
+          <Icon name="arrow-left" />
         </div>
+      ) : (
+        <div></div>
       )
     }
     const renderTitle = () => {
@@ -37,7 +44,7 @@ export default defineComponent({
     }
     return () => {
       return (
-        <div>
+        <div class="nav-bar">
           {renderIcon()}
           {renderTitle()}
           {renderRight()}

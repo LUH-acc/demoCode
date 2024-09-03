@@ -18,7 +18,7 @@
 
   const filterRoute = () => {
     routerList.value = routes
-      .filter((item) => item.name !== 'Layout' || !item.name)
+      .filter((item) => !item.meta || !item.meta.hidden)
       .map((item) => {
         return {
           name: item.name,

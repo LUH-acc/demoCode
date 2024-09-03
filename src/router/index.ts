@@ -19,14 +19,7 @@ export const layoutRoutes: Array<RouteRecordRaw> = [
   },
 ]
 
-export const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    name: 'Layout',
-    redirect: '/index',
-    component: () => import('@/layout/index.vue'),
-    children: layoutRoutes,
-  },
+const demoRoutes: Array<RouteRecordRaw> = [
   {
     path: '/luckyDraw',
     name: 'luckyDraw',
@@ -103,6 +96,9 @@ export const routes: Array<RouteRecordRaw> = [
   {
     path: '/lifeDetail',
     name: 'lifeDetail',
+    meta: {
+      hidden: true,
+    },
     component: () => import('@/views/life100/lifeDetail.vue'),
   },
   {
@@ -110,6 +106,53 @@ export const routes: Array<RouteRecordRaw> = [
     name: 'fileDrag',
     component: () => import('@/views/fileDrag/index.vue'),
   },
+]
+
+const lifeAppRoutes: Array<RouteRecordRaw> = [
+  {
+    path: '/life',
+    name: 'LifeApp',
+    redirect: '/life-list',
+    component: () => import('@/layout/lifeAppLayout.vue'),
+    children: [
+      {
+        path: '/life-list',
+        name: 'life-list',
+        component: () => import('@/views/lifeApp/index.vue'),
+      },
+      {
+        path: '/life-playground',
+        name: 'life-playground',
+        component: () => import('@/views/lifeApp/playground.vue'),
+      },
+      {
+        path: '/life-notify',
+        name: 'life-notify',
+        component: () => import('@/views/lifeApp/notify.vue'),
+      },
+      {
+        path: '/life-my',
+        name: 'life-my',
+        component: () => import('@/views/lifeApp/mine.vue'),
+      },
+    ],
+  },
+]
+
+export const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/',
+    name: 'Layout',
+    meta: {
+      hidden: true,
+    },
+    redirect: '/index',
+    component: () => import('@/layout/index.vue'),
+    children: layoutRoutes,
+  },
+  ...demoRoutes,
+  ...lifeAppRoutes,
+
   {
     path: '/testPage',
     name: 'testPage',
@@ -117,7 +160,13 @@ export const routes: Array<RouteRecordRaw> = [
   },
 
   // 替代vue2中的'*'通配符路径
-  { path: '/:pathMatch(.*)*', redirect: '/' },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/',
+    meta: {
+      hidden: true,
+    },
+  },
 ]
 
 const router = createRouter({
