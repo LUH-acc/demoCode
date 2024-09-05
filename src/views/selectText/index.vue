@@ -1,0 +1,83 @@
+<template>
+  <div>
+    <div class="select-text" @mouseup.prevent="handleMouseUp">
+      在古老的江湖中，英雄豪杰各显其能，演绎着无数传奇故事。在这片充满神秘与挑战的世界里，剑客如风，行踪诡秘；武僧如山，稳重沉稳。每一个江湖人物都有自己的命运轨迹与理想追求。他们或为了武功绝学，或为保护家园，不惜以身试剑，闯荡四方。那些传奇的武功秘籍、隐秘的武林门派、复杂的江湖恩怨构成了一幅幅生动的画卷。在这些故事中，英雄们往往经历了重重磨难，但也因此获得了超凡的能力和深厚的智慧。最终，他们的经历不仅塑造了自身，也影响了整个武林的格局。每一篇武侠文章，都是对这种英雄梦想和江湖纷争的美丽诠释。
+      在遥远的江湖世界里，流传着无数动人的武侠故事，这些故事以其独特的魅力吸引着无数读者。江湖，是一个充满了刀光剑影和恩怨情仇的地方，每个角落都隐藏着无数的秘密与传奇。这里有神秘的武功绝学，也有风云变幻的门派纷争；有正义的侠客，也有阴险的反派。在这样的背景下，英雄们或为了家国，或为寻求个人荣耀，踏上了一条充满挑战和未知的旅途。
+      其中，最令人向往的，莫过于那些风华绝代的武功。每一种武功都有其独特的运用方法和深远的内涵。比如，轻功如燕，翩翩而至，迅捷如风；而内力如海，深厚无比，能将外敌一一化解。正是这些神奇的武功，赋予了武侠世界无限的魅力。每一位武侠人物都在这些武功的帮助下，经历了种种试炼与冒险。他们在这条道路上，既有过人的智慧，也有无尽的勇气，面对种种困境时，他们总能凭借自己的聪明才智和坚韧意志，化险为夷，创造出一个个动人的传奇故事。
+      江湖中的门派纷争也是武侠故事的重要组成部分。门派之间的恩怨情仇，往往让整个江湖陷入风雨飘摇之中。正邪对立、利益冲突，几乎每一个门派都有自己的立场和目标。在这样的背景下，一场场惊心动魄的对决展开，每一次对决不仅是力量的较量，更是智慧和谋略的较量。门派的兴衰更替，也往往映射出江湖的风云变幻，让人感受到江湖的变幻莫测和残酷无情。
+      在这些故事中，侠客往往以身试剑，经历了许多生死考验。他们不仅要面对外部的敌人，还要在内心深处找到自己的方向与归宿。在不断的磨砺中，侠客们成长为更为成熟的人，他们的经历和成长，也让读者对他们充满了敬仰与共鸣。最终，这些武侠故事不仅仅是对英雄传奇的叙述，更是一种对人性、正义与荣耀的深刻探讨。正是这些元素，使得武侠小说成为了不朽的经典，吸引了一代又一代的读者。
+    </div>
+    <!-- 只能使用button元素 -->
+    <button class="select-btn" ref="selectBtn" v-if="isBtnShow" @click="handleClick">选择</button>
+    <!-- 使用div元素会触发selectionchange事件,导致重新选的值为空 -->
+    <!-- <div class="select-btn" ref="selectBtn" v-if="isBtnShow" @click="handleClick">选择</div> -->
+  </div>
+</template>
+
+<script setup lang="ts">
+  const selectBtn = ref(null)
+  const isBtnShow = ref(false)
+  onMounted(() => {
+    document.addEventListener('selectionchange', selectionchange)
+  })
+  onUnmounted(() => {
+    selectText.value.removeEventListener('selectionchange', selectionchange)
+  })
+  const selectionchange = () => {
+    if (isBtnShow.value && !window.getSelection().toString()) {
+      isBtnShow.value = false
+    }
+  }
+  const handleMouseUp = (e) => {
+    if (!window.getSelection().toString()) return
+    isBtnShow.value = true
+    const offset = 5
+    nextTick(() => {
+      selectBtn.value.style.cssText = `top: ${e.clientY + offset}px; left: ${e.clientX + offset}px; z-index: 10`
+    })
+  }
+  const handleClick = () => {
+    isBtnShow.value = false
+    const selection = window.getSelection()
+    const mark = document.createElement('span')
+    mark.className = 'yd-mark'
+    const id = `mark-${Date.now()}`
+    mark.id = id
+    const range = selection.getRangeAt(0)
+    try {
+      // 将元素包裹在标记元素中
+      range.surroundContents(mark)
+    } catch (e) {
+      console.warn('标签被截断')
+      window.getSelection().removeAllRanges()
+      return
+    }
+  }
+</script>
+
+<style scoped lang="less">
+  .select-text {
+    width: 500px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .select-btn {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 80px;
+    height: 40px;
+    cursor: pointer;
+    line-height: 40px;
+    text-align: center;
+    background-color: lightblue;
+  }
+</style>
+<style>
+  .yd-mark {
+    background-color: #fff8db;
+    padding: 0 0.2em;
+    position: relative;
+  }
+</style>

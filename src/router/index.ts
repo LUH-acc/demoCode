@@ -106,6 +106,11 @@ const demoRoutes: Array<RouteRecordRaw> = [
     name: 'fileDrag',
     component: () => import('@/views/fileDrag/index.vue'),
   },
+  {
+    path: '/selectText',
+    name: 'selectText',
+    component: () => import('@/views/selectText/index.vue'),
+  },
 ]
 
 const lifeAppRoutes: Array<RouteRecordRaw> = [
