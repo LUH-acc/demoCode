@@ -40,6 +40,8 @@ export default defineComponent({
     const renderRight = () => {
       if (slots.right) {
         return <div class="right">{slots.right()}</div>
+      } else {
+        return <div></div>
       }
     }
     return () => {

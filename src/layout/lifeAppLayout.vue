@@ -11,7 +11,12 @@
       <!-- <div v-for="(item, index) in routes" :key="index" @click="() => router.push(item.path)">
         {{ item.meta.title }}
       </div> -->
-      <div v-for="item in routes" :key="item.path" @click="handleClick(item.path)">
+      <div
+        v-for="item in routes"
+        :class="{ active: currentRoute === item.path }"
+        :key="item.path"
+        @click="handleClick(item.path)"
+      >
         {{ item.name }}
       </div>
     </div>
@@ -21,7 +26,7 @@
 <script setup lang="ts">
   import { useRouter } from 'vue-router'
   const router = useRouter()
-
+  const currentRoute = ref('/life-list')
   const routes = [
     {
       name: '清单',
@@ -43,8 +48,8 @@
 
   const handleClick = (path: string) => {
     console.log(123, path)
-
-    router.push(path)
+    currentRoute.value = path
+    router.replace(path)
   }
 </script>
 
@@ -69,5 +74,8 @@
     div {
       flex: 1;
     }
+  }
+  .active {
+    color: #1890ff;
   }
 </style>
