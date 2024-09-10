@@ -13,8 +13,17 @@
   import { routes } from '@/router'
 
   const router = useRouter()
+  const count = ref('')
 
   const routerList = ref<{ name: string; path: string }[]>([])
+
+  const decimalToBinary = (input) => {
+    if (input === 0 || input === 1) {
+      return String(input)
+    } else {
+      return decimalToBinary(Math.floor(input / 2)) + (input % 2)
+    }
+  }
 
   const filterRoute = () => {
     routerList.value = routes
@@ -28,6 +37,9 @@
   }
 
   onMounted(() => {
+    count.value = decimalToBinary(12)
+    console.log(count.value)
+
     filterRoute()
     let testDom = document.querySelector('.test')
     const originStyle = window.getComputedStyle(testDom)

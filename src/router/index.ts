@@ -111,6 +111,11 @@ const demoRoutes: Array<RouteRecordRaw> = [
     name: 'selectText',
     component: () => import('@/views/selectText/index.vue'),
   },
+  {
+    path: '/calendar',
+    name: 'calendar',
+    component: () => import('@/views/calendar/index.vue'),
+  },
 ]
 
 const lifeAppRoutes: Array<RouteRecordRaw> = [
