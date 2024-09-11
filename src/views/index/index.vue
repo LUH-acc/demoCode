@@ -2,47 +2,45 @@
   <div>
     <div class="index-page">
       <div>index page </div>
-      <div class="link" @click="handleClick()"> go lockyDraw </div>
-      <div class="link" @click="goTODO">go todoList</div>
-      <div class="link" @click="goPath('/chat')">go chat</div>
-      <div class="link" @click="goPath('/canvasImg')">go canvasImg</div>
-      <div class="link" @click="goPath('/dragPage')">go dragPage</div>
-      <div class="link" @click="goPath('/resizePage')">go resizePage</div>
-      <div class="link" @click="goPath('/toHtml')">go toHtml</div>
       <div class="link" v-for="item in routerList" :key="item.name" @click="goPath(item.path)">
-        go to{{ item.name }}
+        go to {{ item.name }}
       </div>
     </div>
-    <div class="test"> asdfjaskdfjasdkfjasdkfjasldkfjalskdjflasdjfkasjdlfajsdl </div>
+    <div class="test"> </div>
   </div>
 </template>
 <script setup lang="ts">
-  const router = useRouter()
+  import { routes } from '@/router'
 
-  const routerList = reactive([
-    {
-      name: 'canvas',
-      path: '/canvas',
-    },
-    {
-      name: 'changeImg',
-      path: '/changeImg',
-    },
-    {
-      name: 'boxShadowCanvas',
-      path: '/boxShadowCanvas',
-    },
-    {
-      name: 'waterFull',
-      path: '/waterFull',
-    },
-    {
-      name: 'testPage',
-      path: '/testPage',
-    },
-  ])
+  const router = useRouter()
+  const count = ref('')
+
+  const routerList = ref<{ name: string; path: string }[]>([])
+
+  const decimalToBinary = (input) => {
+    if (input === 0 || input === 1) {
+      return String(input)
+    } else {
+      return decimalToBinary(Math.floor(input / 2)) + (input % 2)
+    }
+  }
+
+  const filterRoute = () => {
+    routerList.value = routes
+      .filter((item) => !item.meta || !item.meta.hidden)
+      .map((item) => {
+        return {
+          name: item.name,
+          path: item.path,
+        }
+      })
+  }
 
   onMounted(() => {
+    count.value = decimalToBinary(12)
+    console.log(count.value)
+
+    filterRoute()
     let testDom = document.querySelector('.test')
     const originStyle = window.getComputedStyle(testDom)
     // const container = document.createElement('div')
@@ -56,15 +54,6 @@
       // container.style.setProperty(name, originStyle.getPropertyValue(name))
     })
   })
-
-  const handleClick = () => {
-    console.log('执行')
-
-    router.push('/luckyDraw')
-  }
-  const goTODO = () => {
-    router.push('/todoList')
-  }
   const goPath = (path: string) => {
     router.push(path)
   }
@@ -75,7 +64,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 1000px;
     // background-color: lightpink;
   }
   .link {

@@ -28,3 +28,34 @@ export function isMobile(value: string): boolean {
 
 export const isIOS = (): boolean =>
   inBrowser ? /ios|iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()) : false
+
+// 任务开始中断
+export const poccessTask = (list) => {
+  let flag = false
+  const taskResult = []
+  let i = 0
+  return {
+    // 任务开始
+    startTask() {
+      return new Promise(async (resolve) => {
+        if (flag) return
+        flag = true
+        while (i < list.length) {
+          if (!flag) return
+          console.log(`startTask ${i} start`)
+          const result = await list[i]()
+          taskResult.push(result)
+          console.log(`startTask ${i} done`)
+          i++
+        }
+        resolve(taskResult)
+        flag = false
+      })
+    },
+    // 任务终止
+    puaseTask() {
+      flag = false
+      console.log('stopTask')
+    },
+  }
+}

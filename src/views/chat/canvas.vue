@@ -89,37 +89,37 @@
   }
   // 图片上传
   const handleFileChange = (e) => {
-    // const fileReader = new FileReader()
-    // // 读取file对象，转换成base64编码
-    // fileReader.readAsDataURL(e.target.files[0])
-    // fileReader.onload = (e) => {
-    //   // imgUrl.value = e.target.result
-    //   // 创建image标签，读取img的宽度和高度
-    //   const image = new Image()
-    //   image.src = e.target.result
-    //   // imgUrl.value = e.target.result
-    //   console.log('123')
+    const fileReader = new FileReader()
+    // 读取file对象，转换成base64编码
+    fileReader.readAsDataURL(e.target.files[0])
+    fileReader.onload = (e) => {
+      // imgUrl.value = e.target.result
+      // 创建image标签，读取img的宽度和高度
+      // const image = new Image()
+      // image.src = e.target.result
+      imgUrl.value = e.target.result
+      console.log('123')
 
-    //   image.onload = () => {
-    //     // 宽高
-    //     image.style.width = 20 + 'px'
-    //     image.style.height = 50 + 'px'
-    //     // 图片地址
-    //     document.body.appendChild(image)
-    //     console.log(image.width, image.height)
-    //   }
-    // }
-    inspectImgWH({
-      width: 200,
-      height: 200,
-      file: e.target.files[0],
-    })
-      .then((res) => {
-        console.log('res', res)
-      })
-      .catch((err) => {
-        console.log('err', err)
-      })
+      // image.onload = () => {
+      //   // 宽高
+      //   image.style.width = 20 + 'px'
+      //   image.style.height = 50 + 'px'
+      //   // 图片地址
+      //   document.body.appendChild(image)
+      //   console.log(image.width, image.height)
+      // }
+    }
+    // inspectImgWH({
+    //   width: 200,
+    //   height: 200,
+    //   file: e.target.files[0],
+    // })
+    //   .then((res) => {
+    //     console.log('res', res)
+    //   })
+    //   .catch((err) => {
+    //     console.log('err', err)
+    //   })
   }
 
   const inspectImgWH = (data: { width: number; height: number; src?: string; file?: File }) => {

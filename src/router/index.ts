@@ -19,14 +19,7 @@ export const layoutRoutes: Array<RouteRecordRaw> = [
   },
 ]
 
-export const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    name: 'Layout',
-    redirect: '/index',
-    component: () => import('@/layout/index.vue'),
-    children: layoutRoutes,
-  },
+const demoRoutes: Array<RouteRecordRaw> = [
   {
     path: '/luckyDraw',
     name: 'luckyDraw',
@@ -86,13 +79,104 @@ export const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/waterFull/index.vue'),
   },
   {
+    path: '/articleFold',
+    name: 'articleFold',
+    component: () => import('@/views/articleFold/index.vue'),
+  },
+  {
+    path: '/sideNav',
+    name: 'sideNav',
+    component: () => import('@/views/sideNav/index.vue'),
+  },
+  {
+    path: '/life100',
+    name: 'life 100',
+    component: () => import('@/views/life100/index.vue'),
+  },
+  {
+    path: '/lifeDetail',
+    name: 'lifeDetail',
+    meta: {
+      hidden: true,
+    },
+    component: () => import('@/views/life100/lifeDetail.vue'),
+  },
+  {
+    path: '/fileDrag',
+    name: 'fileDrag',
+    component: () => import('@/views/fileDrag/index.vue'),
+  },
+  {
+    path: '/selectText',
+    name: 'selectText',
+    component: () => import('@/views/selectText/index.vue'),
+  },
+  {
+    path: '/calendar',
+    name: 'calendar',
+    component: () => import('@/views/calendar/index.vue'),
+  },
+]
+
+const lifeAppRoutes: Array<RouteRecordRaw> = [
+  {
+    path: '/life',
+    name: 'LifeApp',
+    redirect: '/life-list',
+    component: () => import('@/layout/lifeAppLayout.vue'),
+    children: [
+      {
+        path: '/life-list',
+        name: 'life-list',
+        component: () => import('@/views/lifeApp/index.vue'),
+      },
+      {
+        path: '/life-playground',
+        name: 'life-playground',
+        component: () => import('@/views/lifeApp/playground.vue'),
+      },
+      {
+        path: '/life-notify',
+        name: 'life-notify',
+        component: () => import('@/views/lifeApp/notify.vue'),
+      },
+      {
+        path: '/life-my',
+        name: 'life-my',
+        component: () => import('@/views/lifeApp/mine.vue'),
+      },
+    ],
+  },
+]
+
+export const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/',
+    name: 'Layout',
+    meta: {
+      hidden: true,
+    },
+    redirect: '/index',
+    component: () => import('@/layout/index.vue'),
+    children: layoutRoutes,
+  },
+  ...demoRoutes,
+  ...lifeAppRoutes,
+
+  {
     path: '/testPage',
     name: 'testPage',
     component: () => import('@/views/testPage/index.vue'),
   },
 
   // 替代vue2中的'*'通配符路径
-  { path: '/:pathMatch(.*)*', redirect: '/' },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/',
+    meta: {
+      hidden: true,
+    },
+  },
 ]
 
 const router = createRouter({
