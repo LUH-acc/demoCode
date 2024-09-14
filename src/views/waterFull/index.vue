@@ -42,14 +42,14 @@
 
   onMounted(() => {
     // console.log(heightList.value)
-    window.addEventListener('resize', resize)
+    addEventListener('resize', resize)
     init()
     createDiv()
     observeLoading()
   })
 
   const observeLoading = () => {
-    let box = document.querySelector('.water-full-loading')
+    let box = document.querySelector('.water-fall-loading')
     const observe = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -83,6 +83,8 @@
   }
 
   const resize = debounce(() => {
+    console.log(123)
+
     init()
     for (let i = 0; i < list.length; i++) {
       let index = isMin()
