@@ -38,7 +38,7 @@
 
   onMounted(() => {
     count.value = decimalToBinary(12)
-    console.log(count.value)
+    // console.log(count.value)
 
     filterRoute()
     let testDom = document.querySelector('.test')
@@ -49,7 +49,7 @@
 
     styleNames.forEach((name) => {
       if (name === 'line-height' || name === 'padding-top') {
-        console.log(originStyle.getPropertyValue(name))
+        // console.log(originStyle.getPropertyValue(name))
       }
       // container.style.setProperty(name, originStyle.getPropertyValue(name))
     })

@@ -116,6 +116,11 @@ const demoRoutes: Array<RouteRecordRaw> = [
     name: 'calendar',
     component: () => import('@/views/calendar/index.vue'),
   },
+  {
+    path: '/randomCode',
+    name: 'randomCode',
+    component: () => import('@/views/randomVerifyCode/index.vue'),
+  },
 ]
 
 const lifeAppRoutes: Array<RouteRecordRaw> = [
