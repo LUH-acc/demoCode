@@ -13,7 +13,20 @@
   import { routes } from '@/router'
 
   const router = useRouter()
-  const count = ref('')
+  const state = reactive({
+    name: 'lu',
+    age: 25,
+  })
+  const name = toRef(state,'name')
+
+  onMounted(() => {
+    console.log(name.value);
+    setTimeout(() => {
+      state.name = 'li'
+      console.log(name.value);
+    }, 2000);
+    
+  })
 
   const routerList = ref<{ name: string; path: string }[]>([])
 
@@ -26,6 +39,8 @@
   }
 
   const filterRoute = () => {
+    console.log(routes)
+
     routerList.value = routes
       .filter((item) => !item.meta || !item.meta.hidden)
       .map((item) => {
@@ -36,8 +51,9 @@
       })
   }
 
+
   onMounted(() => {
-    count.value = decimalToBinary(12)
+    // count.value = decimalToBinary(12)
     // console.log(count.value)
 
     filterRoute()
@@ -66,11 +82,13 @@
     align-items: center;
     // background-color: lightpink;
   }
+
   .link {
     border: 1px solid #ccc;
     padding: 10px;
     cursor: pointer;
   }
+
   .test {
     line-height: 1.6;
   }

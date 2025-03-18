@@ -20,10 +20,26 @@ export const layoutRoutes: Array<RouteRecordRaw> = [
 ]
 
 const demoRoutes: Array<RouteRecordRaw> = [
+
   {
     path: '/luckyDraw',
     name: 'luckyDraw',
     component: () => import('@/views/luckyDraw/index.vue'),
+  },
+  {
+    path: '/uploadImg',
+    name: 'uploadImg',
+    component: () => import('@/views/uploadImg/index.vue'),
+  },
+  {
+    path: '/videoImg',
+    name: 'videoImg',
+    component: () => import('@/views/videoImg/index.vue'),
+  },
+  {
+    path: '/lineChart',
+    name: 'lineChart',
+    component: () => import('@/views/echartsList/line.vue'),
   },
   {
     path: '/todoList',

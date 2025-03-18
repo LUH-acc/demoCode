@@ -7,22 +7,11 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    AppIcon: (typeof import('./src/components/AppIcon/index.vue'))['default']
-    AppMenu: (typeof import('./src/components/AppMenu/index.vue'))['default']
-    AppTable: (typeof import('./src/components/AppTable/index.vue'))['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Iconfont: typeof import('./src/components/iconfont/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ScratchCard: typeof import('./src/components/scratchCard.vue')['default']
-    VanCell: (typeof import('vant/es'))['Cell']
-    VanEmpty: typeof import('vant/es')['Empty']
-    VanIcon: typeof import('vant/es')['Icon']
-    VanImage: (typeof import('vant/es'))['Image']
-    VanNavBar: (typeof import('vant/es'))['NavBar']
-    VanSwipe: (typeof import('vant/es'))['Swipe']
-    VanSwipeItem: (typeof import('vant/es'))['SwipeItem']
-    VanTab: typeof import('vant/es')['Tab']
-    VanTabs: typeof import('vant/es')['Tabs']
+    VanUploader: typeof import('vant/es')['Uploader']
   }
 }

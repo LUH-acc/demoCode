@@ -16,8 +16,15 @@ export default ({ command, mode }) => {
       'process.env': env,
     },
     server: {
-      port: 3000,
+      port: 3005,
       host: '0.0.0.0',
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3000',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        }
+      }
     },
     resolve: {
       alias: {
