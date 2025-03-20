@@ -1,1 +1,0 @@
-import{_ as e}from"./_plugin-vue_export-helper-BCo6x5W8.js";import{c as r,h as t}from"./index-CjTCff96.js";const i=e({},[["render",function(e,i){return t(),r("div",null," lifeDetail ")}]]);export{i as default};
