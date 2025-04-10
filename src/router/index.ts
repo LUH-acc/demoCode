@@ -20,7 +20,6 @@ export const layoutRoutes: Array<RouteRecordRaw> = [
 ]
 
 const demoRoutes: Array<RouteRecordRaw> = [
-
   {
     path: '/luckyDraw',
     name: 'luckyDraw',
@@ -136,6 +135,11 @@ const demoRoutes: Array<RouteRecordRaw> = [
     path: '/randomCode',
     name: 'randomCode',
     component: () => import('@/views/randomVerifyCode/index.vue'),
+  },
+  {
+    path: '/smileBox',
+    name: 'smileBox',
+    component: () => import('@/views/smileBox/index.vue'),
   },
 ]
 
