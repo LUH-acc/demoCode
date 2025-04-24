@@ -9,8 +9,8 @@ import VueJsx from '@vitejs/plugin-vue-jsx'
 
 // 若在vue中使用了异步组件（defineAsyncComponent），则最终构建产物中可能会出现名为_plugin-vue_export-helper.hash.js的文件。
 //  但部分web服务器无法处理以_开头的文件（如golang中的http.FileServer或Github Pages），这将导致响应404
-const INVALID_CHAR_REGEX = /[\x00-\x1F\x7F<>*#"{}|^[\]`;?:&=+$,]/g;
-const DRIVE_LETTER_REGEX = /^[a-z]:/i;
+const INVALID_CHAR_REGEX = /[\x00-\x1F\x7F<>*#"{}|^[\]`;?:&=+$,]/g
+const DRIVE_LETTER_REGEX = /^[a-z]:/i
 
 // https://vitejs.dev/config/
 export default ({ command, mode }) => {
@@ -28,8 +28,8 @@ export default ({ command, mode }) => {
           target: 'http://localhost:3000',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
-        }
-      }
+        },
+      },
     },
     resolve: {
       alias: {
@@ -64,25 +64,22 @@ export default ({ command, mode }) => {
           entryFileNames: `js/[name]-[hash].js`,
           chunkFileNames: `js/[name]-[hash].js`,
           assetFileNames(assetInfo) {
-            if(assetInfo.name.endsWith('.css')) {
+            if (assetInfo.name.endsWith('.css')) {
               return `css/[name]-[hash].css`
             }
-            const imgTypes = ['.jpg','.jpeg','.png','.gif','.ico','.webp']
+            const imgTypes = ['.jpg', '.jpeg', '.png', '.gif', '.ico', '.webp']
 
-            if(imgTypes.some((type) => assetInfo.name.endsWith(type))) {
+            if (imgTypes.some((type) => assetInfo.name.endsWith(type))) {
               return `images/[name]-[hash].[ext]`
             }
             return `assets/[name]-[hash].[ext]`
           },
           sanitizeFileName(fileName) {
-            const match = DRIVE_LETTER_REGEX.exec(fileName);
-            const driveLetter = match ? match[0] : "";
-            return (
-              driveLetter +
-              fileName.slice(driveLetter.length).replace(INVALID_CHAR_REGEX, "")
-            );
+            const match = DRIVE_LETTER_REGEX.exec(fileName)
+            const driveLetter = match ? match[0] : ''
+            return driveLetter + fileName.slice(driveLetter.length).replace(INVALID_CHAR_REGEX, '')
           },
-        }
+        },
       },
       sourcemap: env.VITE_BUILD_SOURCEMAP === 'true',
       // minify默认esbuild，esbuild模式下terserOptions将失效

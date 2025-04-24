@@ -1,11 +1,6 @@
 <template>
   <div>
-    <div
-      class="box"
-      @mouseenter="handleMouseEnter"
-      @mousemove="handleMouseMove"
-      @mouseleave="handleMouseLeave"
-    >
+    <div class="box" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave">
       <p class="t">AAA码农欢仔</p>
       <p class="t">中奖一千万 </p>
       <div class="smile-container" ref="smile">

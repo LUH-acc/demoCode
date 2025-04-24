@@ -122,6 +122,11 @@ const demoRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/views/fileDrag/index.vue'),
   },
   {
+    path: '/lightBox',
+    name: 'lightBox',
+    component: () => import('@/views/lightBox/index.vue'),
+  },
+  {
     path: '/selectText',
     name: 'selectText',
     component: () => import('@/views/selectText/index.vue'),
