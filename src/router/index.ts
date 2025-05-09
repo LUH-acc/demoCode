@@ -177,6 +177,32 @@ const lifeAppRoutes: Array<RouteRecordRaw> = [
       },
     ],
   },
+  {
+    path: '/targetDetail',
+    name: 'targetDetail',
+    component: () => import('@/views/lifeApp/targetDetail.vue'),
+  },
+]
+
+const chartRoutes = [
+  {
+    path: '/chart',
+    name: 'chartlist',
+    redirect: '/lineChart',
+    component: () => import('@/views/echartsList/index.vue'),
+    children: [
+      {
+        path: '/lineChart',
+        name: 'lineChart',
+        component: () => import('@/views/echartsList/line.vue'),
+      },
+      {
+        path: '/barChart',
+        name: 'barChart',
+        component: () => import('@/views/echartsList/bar.vue'),
+      },
+    ],
+  },
 ]
 
 export const routes: Array<RouteRecordRaw> = [
@@ -192,6 +218,7 @@ export const routes: Array<RouteRecordRaw> = [
   },
   ...demoRoutes,
   ...lifeAppRoutes,
+  ...chartRoutes,
 
   {
     path: '/testPage',

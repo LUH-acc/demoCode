@@ -6,27 +6,27 @@
         go to {{ item.name }}
       </div>
     </div>
-    <div class="test"> </div>
+    <h1 class="test">
+      {{ reObj.name }}
+      {{ reObj.arr }}
+    </h1>
   </div>
 </template>
 <script setup lang="ts">
   import { routes } from '@/router'
+  import { testUse } from '@/vueuses'
+
+  const { testText: text } = testUse('world123123')
 
   const router = useRouter()
-  const state = reactive({
-    name: 'lu',
-    age: 25,
+  const reObj = reactive({
+    name: 'lh',
+    age: 26,
+    gender: '男',
+    arr: [1, 2, 3],
   })
-  const name = toRef(state,'name')
 
-  onMounted(() => {
-    console.log(name.value);
-    setTimeout(() => {
-      state.name = 'li'
-      console.log(name.value);
-    }, 2000);
-    
-  })
+  onMounted(() => {})
 
   const routerList = ref<{ name: string; path: string }[]>([])
 
@@ -50,7 +50,6 @@
         }
       })
   }
-
 
   onMounted(() => {
     // count.value = decimalToBinary(12)

@@ -8,6 +8,12 @@
   </div>
 </template>
 <script setup lang="ts">
+  import { h } from 'vue'
+
+  onMounted(() => {
+    const vnode = h('div', {}, 'vnode')
+    console.log(vnode)
+  })
   // onMounted(() => {
   //   // 创建性能观察者实例来监听资源加载事件
   //   const observer = new PerformanceObserver((list) => {

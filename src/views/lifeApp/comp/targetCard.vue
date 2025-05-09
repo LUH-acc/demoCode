@@ -15,8 +15,12 @@
 </template>
 
 <script setup lang="ts">
+  import { useRouter } from 'vue-router'
+
+  const router = useRouter()
   const handleClick = () => {
     console.log('targetCard clicked')
+    router.push('/targetDetail')
   }
 </script>
 

@@ -55,6 +55,9 @@ export default ({ command, mode }) => {
         },
       }),
     ],
+    optimizeDeps: {
+      include: ['echarts'], // 强制预构建
+    },
     // vite.config.ts
 
     build: {
