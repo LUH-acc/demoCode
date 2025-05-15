@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <!-- <div class="box">
     <div> test page </div>
     <div class="img-box">
       <img src="@/assets/pg1.jpg" alt="" />
@@ -7,11 +7,13 @@
     <div>
       <button @click="handleClick">生成</button>
     </div>
-  </div>
+  </div> -->
+  <button class="toast-btn" @click="handleMyToast">命令式弹框</button>
 </template>
 
 <script setup lang="ts">
   import * as domToImage from 'dom-to-image'
+  import useToast from '@/vueuses/useToast'
 
   const handleClick = () => {
     const img = document.querySelector('.box')
@@ -21,6 +23,10 @@
       a.download = 'test.png'
       a.click()
     })
+  }
+
+  const handleMyToast = () => {
+    useToast('hello world','error')
   }
 </script>
 
