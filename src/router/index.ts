@@ -20,7 +20,6 @@ export const layoutRoutes: Array<RouteRecordRaw> = [
 ]
 
 const demoRoutes: Array<RouteRecordRaw> = [
-
   {
     path: '/luckyDraw',
     name: 'luckyDraw',
@@ -123,6 +122,11 @@ const demoRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/views/fileDrag/index.vue'),
   },
   {
+    path: '/lightBox',
+    name: 'lightBox',
+    component: () => import('@/views/lightBox/index.vue'),
+  },
+  {
     path: '/selectText',
     name: 'selectText',
     component: () => import('@/views/selectText/index.vue'),
@@ -136,6 +140,11 @@ const demoRoutes: Array<RouteRecordRaw> = [
     path: '/randomCode',
     name: 'randomCode',
     component: () => import('@/views/randomVerifyCode/index.vue'),
+  },
+  {
+    path: '/smileBox',
+    name: 'smileBox',
+    component: () => import('@/views/smileBox/index.vue'),
   },
 ]
 
@@ -168,6 +177,32 @@ const lifeAppRoutes: Array<RouteRecordRaw> = [
       },
     ],
   },
+  {
+    path: '/targetDetail',
+    name: 'targetDetail',
+    component: () => import('@/views/lifeApp/targetDetail.vue'),
+  },
+]
+
+const chartRoutes = [
+  {
+    path: '/chart',
+    name: 'chartlist',
+    redirect: '/lineChart',
+    component: () => import('@/views/echartsList/index.vue'),
+    children: [
+      {
+        path: '/lineChart',
+        name: 'lineChart',
+        component: () => import('@/views/echartsList/line.vue'),
+      },
+      {
+        path: '/barChart',
+        name: 'barChart',
+        component: () => import('@/views/echartsList/bar.vue'),
+      },
+    ],
+  },
 ]
 
 export const routes: Array<RouteRecordRaw> = [
@@ -183,6 +218,7 @@ export const routes: Array<RouteRecordRaw> = [
   },
   ...demoRoutes,
   ...lifeAppRoutes,
+  ...chartRoutes,
 
   {
     path: '/testPage',

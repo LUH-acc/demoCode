@@ -4,7 +4,8 @@
   "version": "0.1.1",
   "type": "module",
   "scripts": {
-    "start": "vite --open",
+    "dev": "vite --open",
+    "prod": "vite --open --mode production",
     "build": "vite build",
     "preview": "vite preview",
     "build:prod": "vite build && node sftp.js",
