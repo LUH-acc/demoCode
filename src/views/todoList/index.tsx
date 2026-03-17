@@ -1,7 +1,7 @@
 import { defineComponent, onMounted, ref } from 'vue'
 import './index.less'
 export default defineComponent({
-  name: 'TodoList',
+  name: 'TextE',
   setup() {
     // 当前采用中间省略方式
     const text = ref('asdasdftgsadfa我人哦无人机为人极为')

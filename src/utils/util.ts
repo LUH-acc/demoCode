@@ -59,3 +59,13 @@ export const poccessTask = (list) => {
     },
   }
 }
+
+// 生成随机数
+export const random = (min: number, max: number): number => {
+  return Math.floor(Math.random() * (max - min) + min)
+}
+// 生成随机颜色
+export const randomColor = (): string => {
+  const color = '#' + Math.random().toString(16).slice(2, 8).padEnd(6, '0')
+  return color
+}

@@ -6,14 +6,27 @@
         go to {{ item.name }}
       </div>
     </div>
-    <div class="test"> </div>
+    <h1 class="test">
+      {{ reObj.name }}
+      {{ reObj.arr }}
+    </h1>
   </div>
 </template>
 <script setup lang="ts">
   import { routes } from '@/router'
+  import { testUse } from '@/vueuses'
+
+  const { testText: text } = testUse('world123123')
 
   const router = useRouter()
-  const count = ref('')
+  const reObj = reactive({
+    name: 'lh',
+    age: 26,
+    gender: '男',
+    arr: [1, 2, 3],
+  })
+
+  onMounted(() => {})
 
   const routerList = ref<{ name: string; path: string }[]>([])
 
@@ -26,6 +39,8 @@
   }
 
   const filterRoute = () => {
+    console.log(routes)
+
     routerList.value = routes
       .filter((item) => !item.meta || !item.meta.hidden)
       .map((item) => {
@@ -37,8 +52,8 @@
   }
 
   onMounted(() => {
-    count.value = decimalToBinary(12)
-    console.log(count.value)
+    // count.value = decimalToBinary(12)
+    // console.log(count.value)
 
     filterRoute()
     let testDom = document.querySelector('.test')
@@ -49,7 +64,7 @@
 
     styleNames.forEach((name) => {
       if (name === 'line-height' || name === 'padding-top') {
-        console.log(originStyle.getPropertyValue(name))
+        // console.log(originStyle.getPropertyValue(name))
       }
       // container.style.setProperty(name, originStyle.getPropertyValue(name))
     })
@@ -66,11 +81,13 @@
     align-items: center;
     // background-color: lightpink;
   }
+
   .link {
     border: 1px solid #ccc;
     padding: 10px;
     cursor: pointer;
   }
+
   .test {
     line-height: 1.6;
   }
