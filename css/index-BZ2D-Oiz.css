@@ -1,0 +1,1 @@
+.resize-page{display:flex;flex-direction:column;height:700px;width:100%}.container{flex:1;background-color:#0ff}.resize{min-height:18px;cursor:row-resize;position:relative;z-index:10}.bottom{height:300px;background-color:#ff0}

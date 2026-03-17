@@ -1,0 +1,1 @@
+.drag-box{margin:10px auto;border:1px solid #ccc;display:flex;flex-direction:column;width:400px;position:relative}.drag-item{height:50px;background-color:#add8e6;margin:5px 10px}.dragging{opacity:0}.box-inner{background-color:#add8e6;width:100px;height:100px;resize:both;overflow:hidden}
